@@ -37,7 +37,7 @@ class ZendvnMp{
 	//2. Hiển thị các Action đang thực thi trong Hook
 	//=====================================================
 	public function showFunction(){
-		ZendvnMpSupport::showFunc();
+		ZendvnMpSupport::showFunc('widget_title');
 	}
 		
 	//=====================================================
