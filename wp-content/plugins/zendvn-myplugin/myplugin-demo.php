@@ -13,13 +13,14 @@ Author URI: https://www.facebook.com/TrungHi0
  * */
 
 define('ZEND_MP_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('ZEND_MP_IMAGES_URL', ZEND_MP_PLUGIN_URL . '/images');
+define('ZEND_MP_IMAGES_URL', ZEND_MP_PLUGIN_URL . 'images');
+define('ZEND_MP_CSS_URL', ZEND_MP_PLUGIN_URL . 'css');
 
 define('ZEND_MP_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('ZEND_MP_VIEWS_DIR', ZEND_MP_PLUGIN_DIR . '/views');
-define('ZEND_MP_UPLOADS_DIR', ZEND_MP_PLUGIN_DIR . '/uploads');
-define('ZEND_MP_INCLUDES_DIR', ZEND_MP_PLUGIN_DIR . '/includes');
-define('ZEND_MP_WIDGET_DIR', ZEND_MP_PLUGIN_DIR . '/widgets');
+define('ZEND_MP_VIEWS_DIR', ZEND_MP_PLUGIN_DIR . 'views');
+define('ZEND_MP_UPLOADS_DIR', ZEND_MP_PLUGIN_DIR . 'uploads');
+define('ZEND_MP_INCLUDES_DIR', ZEND_MP_PLUGIN_DIR . 'includes');
+define('ZEND_MP_WIDGET_DIR', ZEND_MP_PLUGIN_DIR . 'widgets');
 // echo '<br/>'. ZEND_MP_VIEWS_DIR;
 // echo '<br/>'. ZEND_MP_PLUGIN_URL;
 

@@ -1,3 +1,4 @@
+
 <?php
 class Zendvn_Mp_Widget_Simple extends WP_Widget
 {
@@ -14,8 +15,24 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
             'width' => '250px',
         );
         parent::__construct($id_base, $name, $widgets_options, $control_option);
-    }
+        add_action('wp_head', array($this, 'add_css'));
+        
 
+       
+    }
+    public function add_css()
+    {
+        // $output = "<style> 
+        // .zendvn-mp-wg-css-simple{ 
+        //     background-color: #f1f1f1 ;
+        //     border: 1px solid black;
+        // }
+        //     </style>";
+        $urlcss= ZEND_MP_CSS_URL .'/simple.css';
+        $output  ='<link rel="stylesheet" type="text/css" href="'.$urlcss.'" media="all">';
+
+        echo $output;
+    }
     public function widget($args, $instance)
     {
         // echo '<pre>'; 
@@ -26,14 +43,14 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         $title = apply_filters('widget_title', $instance['title']);
         // $title = apply_filters('widget_title', $value);
         $title = (empty($title)) ? $widget_name : $instance['title'];
-        $movie = (empty( $instance['movie'])) ? '&nbsp;' : $instance['movie'];
+        $movie = (empty($instance['movie'])) ? '&nbsp;' : $instance['movie'];
         $song = (empty($instance['song'])) ? '&nbsp;' : $instance['song'];
 
 
         echo  '<br/>' . $before_widget;
         echo $before_title . $title . $after_title;
         echo  '<br/> Hello: ' . $movie;
-        echo  '<br/> Hello: '. $song;
+        echo  '<br/> Hello: ' . $song;
         echo  '<br/>' . $after_widget;
     }
     public function update($new_instance, $old_instance)
