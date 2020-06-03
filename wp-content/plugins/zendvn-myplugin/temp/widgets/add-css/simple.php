@@ -7,39 +7,63 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         $id_base = 'zendvn-mp-widget-simple';
         $name = 'AI Widget Simple';
 
-        $widget_options = array(
+        $widgets_options = array(
             'classname' => 'zendvn-mp-wg-css-simple',
             'description' => 'THIS IS MY WIDGETS ',
         );
         $control_option = array(
             'width' => '250px',
         );
-        parent::__construct($id_base, $name, $widget_options, $control_option);
-
+        parent::__construct($id_base, $name, $widgets_options, $control_option);
         add_action('wp_head', array($this, 'add_css'));
+
         add_action('wp_enqueue_scripts', array($this, 'add_file_css2'));
     }
     public function add_file_css2()
     {
         // add css vào WP bằng hàm trong he thống WP
+        wp_register_style("wp-simple", ZEND_MP_CSS_URL . '/simple.css', array(), true, 'all');
+        wp_register_style("wp-simple-01", ZEND_MP_CSS_URL . '/simple-01.css', array(), true, 'all');
 
-        wp_register_style("wp-simple-02", ZEND_MP_CSS_URL . '/simple-02.css', array(), true, 'all');
-        wp_enqueue_style("wp-simple-02");
-        // if (is_front_page()) {
-        //     wp_enqueue_style("wp-simple");
-        // } else {
-        //     wp_enqueue_style("wp-simple-01");
-        // }
-
+        if (is_front_page()) {
+            wp_enqueue_style("wp-simple");
+        } else {
+            wp_enqueue_style("wp-simple-01");
+        }
+      
     }
 
-    // ============================ Cach 1 add css ============================
-    // public function add_css()
-    // {
-    //     $urlcss = ZEND_MP_CSS_URL . '/simple.css';
-    //     $output  = '<link rel="stylesheet" type="text/css" href="' . $urlcss . '" media="all">';
-    //     echo $output;
-    // }
+    public function add_file_css()
+    {
+        // add css vào WP bằng hàm trong he thống WP
+        wp_register_style("wp-simple", ZEND_MP_CSS_URL . '/simple.css', array(), true, 'all');
+        wp_register_style("wp-simple-01", ZEND_MP_CSS_URL . '/simple-01.css', array(), true, 'all');
+
+        if (is_front_page()) {
+            wp_enqueue_style("wp-simple");
+        } else {
+            wp_enqueue_style("wp-simple-01");
+        }
+        // global $wp_styles;
+        // echo '<pre>'; 
+        // print_r($wp_styles);
+        // echo '</pre>';
+        // die();
+
+    }
+    public function add_css()
+    {
+        // $output = "<style> 
+        // .zendvn-mp-wg-css-simple{ 
+        //     background-color: #f1f1f1 ;
+        //     border: 1px solid black;
+        // }
+        //     </style>";
+        $urlcss = ZEND_MP_CSS_URL . '/simple.css';
+        $output  = '<link rel="stylesheet" type="text/css" href="' . $urlcss . '" media="all">';
+
+        echo $output;
+    }
 
     public function widget($args, $instance)
     {
@@ -53,12 +77,7 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         $title = (empty($title)) ? $widget_name : $instance['title'];
         $movie = (empty($instance['movie'])) ? '&nbsp;' : $instance['movie'];
         $song = (empty($instance['song'])) ? '&nbsp;' : $instance['song'];
-        $css = (empty($instance['css'])) ? '' : $instance['css'];
-        // echo $css;
 
-        $classname = $this->widget_options['classname'];
-        // ============================ cach 2 add css ============================
-        $before_widget = str_replace($classname, $classname . ' ' . $css, $before_widget);
 
         echo  '<br/>' . $before_widget;
         echo $before_title . $title . $after_title;
@@ -66,8 +85,6 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         echo  '<br/> Hello: ' . $song;
         echo  '<br/>' . $after_widget;
     }
-
-    // update vao database
     public function update($new_instance, $old_instance)
     {
 
@@ -76,7 +93,6 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['movie'] = strip_tags($new_instance['movie']);
         $instance['song'] = strip_tags($new_instance['song']);
-        $instance['css'] = strip_tags($new_instance['css']);
 
         return $instance;
     }
@@ -94,7 +110,6 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
 
         $htmlObj = new ZendvnHtml();
 
-        // ============================ Tao phtu title ============================
         $inputID =  $this->get_field_id('title');
         $inputName = $this->get_field_name('title');
         $inputValue = $instance['title'];
@@ -105,7 +120,7 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         $htmlObj->texbox($inputName, $inputValue, $arr);
         echo '<p><label for="' . $inputID . '">' . translate('Title:') . $htmlObj->texbox($inputName, $inputValue, $arr) . '</label></p>';
 
-        // ============================ Tao pt movie ============================
+
         $inputID =  $this->get_field_id('movie');
         $inputName = $this->get_field_name('movie');
         $inputValue = $instance['movie'];;
@@ -116,7 +131,6 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         $htmlObj->texbox($inputName, $inputValue, $arr);
         echo '<p><label for="' . $inputID . '">' . translate('Movie:') . $htmlObj->texbox($inputName, $inputValue, $arr) . '</label></p>';
 
-        // ============================ TAo pt Song ============================
         $inputID =  $this->get_field_id('song');
         $inputName = $this->get_field_name('song');
         $inputValue = $instance['song'];;
@@ -126,16 +140,5 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         );
         $htmlObj->texbox($inputName, $inputValue, $arr);
         echo '<p><label for="' . $inputID . '">' . translate('Song:') . $htmlObj->texbox($inputName, $inputValue, $arr) . '</label></p>';
-
-        // ============================ TAo pt add css ============================
-        $inputID =  $this->get_field_id('css');
-        $inputName = $this->get_field_name('css');
-        $inputValue = $instance['css'];;
-        $arr = array(
-            'class' => 'widefat',
-            'id' => $inputID,
-        );
-        $htmlObj->texbox($inputName, $inputValue, $arr);
-        echo '<p><label for="' . $inputID . '">' . translate('Css class:') . $htmlObj->texbox($inputName, $inputValue, $arr) . '</label></p>';
     }
 }
