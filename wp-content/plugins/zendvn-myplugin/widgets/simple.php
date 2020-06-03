@@ -16,9 +16,16 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         );
         parent::__construct($id_base, $name, $widgets_options, $control_option);
         add_action('wp_head', array($this, 'add_css'));
-        
 
-       
+        add_action('wp_enqueue_scripts', array($this, 'add_file_css'));
+    }
+    public function add_file_css()
+    {
+        // add css vào WP bằng hàm trong he thống WP
+        wp_register_style("wp-simple-01", ZEND_MP_CSS_URL . '/simple-01.css', array(), true, 'all');
+
+        wp_enqueue_style("wp-simple", ZEND_MP_CSS_URL . '/simple.css', array('wp-simple-01'), true, 'all');
+        
     }
     public function add_css()
     {
@@ -28,8 +35,8 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         //     border: 1px solid black;
         // }
         //     </style>";
-        $urlcss= ZEND_MP_CSS_URL .'/simple.css';
-        $output  ='<link rel="stylesheet" type="text/css" href="'.$urlcss.'" media="all">';
+        $urlcss = ZEND_MP_CSS_URL . '/simple.css';
+        $output  = '<link rel="stylesheet" type="text/css" href="' . $urlcss . '" media="all">';
 
         echo $output;
     }
