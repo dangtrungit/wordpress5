@@ -15,15 +15,34 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
             'width' => '250px',
         );
         parent::__construct($id_base, $name, $widget_options, $control_option);
-
+// ============================ add js ,css cach 1 ============================
         // add_action('wp_head', array($this, 'add_css'));
         // add_action('wp_head', array($this, 'add_js'));
 
-       // ============================ ============================
+       // ============================ add js ,css cach 2 ============================
         // add_action('wp_enqueue_scripts', array($this, 'add_file_css2'));
-        // add_action('wp_enqueue_scripts', array($this, 'add_file_js'));
-        add_action( 'wp_enqueue_scripts', array($this, 'my_enqueue') );
 
+        // add_action('wp_enqueue_scripts', array($this, 'add_file_js'));
+        // add_action( 'wp_enqueue_scripts', array($this, 'my_enqueue') );
+
+
+        // ============================ Kiem tra cac file js ,css ton tai !============================
+        wp_enqueue_style("wp-simple-02", ZEND_MP_CSS_URL . '/simple-02.css', array(), true, 'all');
+        wp_enqueue_script('.zendvn-mp-bg-blue-simple', ZEND_MP_JS_URL . '/ajax.js', array('jquery'), false, false);
+        $handlecss = 'wp-simple-02';
+        $handlesc = 'jquery';
+
+        if(wp_style_is($handlecss)){
+            echo " Ton tai! ". $handlecss;
+        }else{
+            echo " <br/> K ton tai! " . $handlecss;
+        }
+
+        if(wp_script_is('jquery')){
+            echo "<br/> Ton tai! ". $handlesc;
+        }else{
+            echo "<br/> K ton tai! " . $handlesc;
+        }
         //    global $wp_scripts;
         //    echo '<pre>'; 
         //    print_r($wp_scripts);
