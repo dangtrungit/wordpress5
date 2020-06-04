@@ -16,38 +16,9 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         );
         parent::__construct($id_base, $name, $widget_options, $control_option);
 
-        // add_action('wp_head', array($this, 'add_css'));
-        // add_action('wp_head', array($this, 'add_js'));
-
-       // ============================ ============================
-        // add_action('wp_enqueue_scripts', array($this, 'add_file_css2'));
-        // add_action('wp_enqueue_scripts', array($this, 'add_file_js'));
-        add_action( 'wp_enqueue_scripts', array($this, 'my_enqueue') );
-
-        //    global $wp_scripts;
-        //    echo '<pre>'; 
-        //    print_r($wp_scripts);
-        //    echo '</pre>';
-
+        add_action('wp_head', array($this, 'add_css'));
+        add_action('wp_enqueue_scripts', array($this, 'add_file_css2'));
     }
-    // ============================  JS AJAX  ============================
-    function my_enqueue() {
-        wp_register_script('.zendvn-mp-bg-blue-simple', ZEND_MP_JS_URL . '/ajax.js', array('jquery'), false, false);
-        wp_enqueue_script('.zendvn-mp-bg-blue-simple');
-   }
-    // ============================ Them JS cach 2============================
-    public function add_file_js()
-    {
-        wp_register_script('abc', ZEND_MP_JS_URL . '/abc.js', array('jquery'), false, false);
-        wp_enqueue_script('abc');
-    }
-    // ============================ Them JS cach 1 ============================
-    public function add_js()
-    {
-        wp_register_script('abc', ZEND_MP_JS_URL . '/abc.js', array('jquery'), false, true);
-        wp_enqueue_script('abc');
-    }
-// ============================ them css cach 2  ============================
     public function add_file_css2()
     {
         // add css vào WP bằng hàm trong he thống WP
@@ -63,12 +34,12 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
     }
 
     // ============================ Cach 1 add css ============================
-    public function add_css()
-    {
-        $urlcss = ZEND_MP_CSS_URL . '/simple.css';
-        $output  = '<link rel="stylesheet" type="text/css" href="' . $urlcss . '" media="all">';
-        echo $output;
-    }
+    // public function add_css()
+    // {
+    //     $urlcss = ZEND_MP_CSS_URL . '/simple.css';
+    //     $output  = '<link rel="stylesheet" type="text/css" href="' . $urlcss . '" media="all">';
+    //     echo $output;
+    // }
 
     public function widget($args, $instance)
     {
