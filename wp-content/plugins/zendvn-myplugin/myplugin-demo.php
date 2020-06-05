@@ -33,6 +33,12 @@ if (!is_admin()) {
 	require_once ZEND_MP_PLUGIN_DIR . '/includes/admin.php';
 	require_once ZEND_MP_PLUGIN_DIR . '/includes/html.php';
 	new ZendvnMpAdmin();
+	require_once ZEND_MP_WIDGET_DIR . '/db_simple.php';
+	new Zendvn_Widget_Db_Simple();
+	add_action('widgets_init', function () {
+		register_widget('Zendvn_Mp_Widget_Simple');
+	});
+	
 }
 require_once ZEND_MP_WIDGET_DIR . '/simple.php';
 // CAch 1 regis
