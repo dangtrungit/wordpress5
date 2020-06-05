@@ -33,12 +33,27 @@ if (!is_admin()) {
 	require_once ZEND_MP_PLUGIN_DIR . '/includes/admin.php';
 	require_once ZEND_MP_PLUGIN_DIR . '/includes/html.php';
 	new ZendvnMpAdmin();
-	// new ZendvnHtml();
-
 }
 require_once ZEND_MP_WIDGET_DIR . '/simple.php';
-
-add_action( 'widgets_init', function(){
-	register_widget( 'Zendvn_Mp_Widget_Simple' );
+// CAch 1 regis
+add_action('widgets_init', function () {
+	register_widget('Zendvn_Mp_Widget_Simple');
 });
 
+// CAch 2 regis
+// add_action('widgets_init','zendvn_mp_register_widge}t');
+// function zendvn_mp_register_widget()
+// {
+// 	register_widget('Zendvn_Mp_Widget_Simple');
+// }
+
+// CAch 1 unregis
+// add_action('widgets_init', function () {
+// 	unregister_widget('Zendvn_Mp_Widget_Simple');
+// });
+// CAch 2 unregis
+// add_action('widgets_init','zendvn_mp_remove_widget');
+// function zendvn_mp_remove_widget()
+// {
+// 	unregister_widget('Zendvn_Mp_Widget_Simple');
+// }

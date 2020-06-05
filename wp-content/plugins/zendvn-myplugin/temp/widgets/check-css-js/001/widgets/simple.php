@@ -15,52 +15,45 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
             'width' => '250px',
         );
         parent::__construct($id_base, $name, $widget_options, $control_option);
-        // ============================ add js ,css cach 1 ============================
+// ============================ add js ,css cach 1 ============================
         // add_action('wp_head', array($this, 'add_css'));
         // add_action('wp_head', array($this, 'add_js'));
 
-        // ============================ add js ,css cach 2 ============================
+       // ============================ add js ,css cach 2 ============================
         // add_action('wp_enqueue_scripts', array($this, 'add_file_css2'));
 
         // add_action('wp_enqueue_scripts', array($this, 'add_file_js'));
-
+        // add_action( 'wp_enqueue_scripts', array($this, 'my_enqueue') );
 
 
         // ============================ Kiem tra cac file js ,css ton tai !============================
-        // wp_enqueue_style("wp-simple-02", ZEND_MP_CSS_URL . '/simple-02.css', array(), true, 'all');
-        // wp_enqueue_script('.zendvn-mp-bg-blue-simple', ZEND_MP_JS_URL . '/ajax.js', array('jquery'), false, false);
-        // $handlecss = 'wp-simple-02';
-        // $handlesc = 'jquery';
+        wp_enqueue_style("wp-simple-02", ZEND_MP_CSS_URL . '/simple-02.css', array(), true, 'all');
+        wp_enqueue_script('.zendvn-mp-bg-blue-simple', ZEND_MP_JS_URL . '/ajax.js', array('jquery'), false, false);
+        $handlecss = 'wp-simple-02';
+        $handlesc = 'jquery';
 
-        // if(wp_style_is($handlecss)){
-        //     echo " Ton tai! ". $handlecss;
-        // }else{
-        //     echo " <br/> K ton tai! " . $handlecss;
-        // }
-
-        // if(wp_script_is('jquery')){
-        //     echo "<br/> Ton tai! ". $handlesc;
-        // }else{
-        //     echo "<br/> K ton tai! " . $handlesc;
-        // }
-        
-        // ============================ Check widget ton tai de tối ưu code khi thêm css , js ============================
-        $is_active = is_active_widget(false, false, $id_base, true);
-        if (!empty($is_active)) {
-            add_action('wp_enqueue_scripts', array($this, 'add_file_css2'));
-            add_action('wp_enqueue_scripts', array($this, 'add_file_js'));
+        if(wp_style_is($handlecss)){
+            echo " Ton tai! ". $handlecss;
+        }else{
+            echo " <br/> K ton tai! " . $handlecss;
         }
-        
-        // ============================ Sử dụng func unregister_widget() để tắt các widget ============================
 
-        // ============================ Kiểm tra thông tin file js thêm vào ============================
+        if(wp_script_is('jquery')){
+            echo "<br/> Ton tai! ". $handlesc;
+        }else{
+            echo "<br/> K ton tai! " . $handlesc;
+        }
         //    global $wp_scripts;
         //    echo '<pre>'; 
         //    print_r($wp_scripts);
         //    echo '</pre>';
+
     }
     // ============================  JS AJAX  ============================
-
+    function my_enqueue() {
+        wp_register_script('.zendvn-mp-bg-blue-simple', ZEND_MP_JS_URL . '/ajax.js', array('jquery'), false, false);
+        wp_enqueue_script('.zendvn-mp-bg-blue-simple');
+   }
     // ============================ Them JS cach 2============================
     public function add_file_js()
     {
@@ -73,7 +66,7 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         wp_register_script('abc', ZEND_MP_JS_URL . '/abc.js', array('jquery'), false, true);
         wp_enqueue_script('abc');
     }
-    // ============================ them css cach 2  ============================
+// ============================ them css cach 2  ============================
     public function add_file_css2()
     {
         // add css vào WP bằng hàm trong he thống WP
