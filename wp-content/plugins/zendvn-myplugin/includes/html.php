@@ -4,20 +4,14 @@
         public function __construct($options = null){
 
         }
-        // ======================= DISPLAY OPTIONAL INPUT===========================
-
-        public function inputtypes_options($type='',$name= '', $value ='', $attr = array(), $options = null)
-        {
-           require_once ZEND_MP_INCLUDES_DIR . '/html/HtmlInputTypes.php';
-           return HtmlInputTypes::create($type,$name,$value,$attr,$options);
-        }
+        
         // ======================= DISPLAY PHAN TU TEXTBOX===========================
         public function texbox($name= '', $value ='', $attr = array(), $options = null)
         {
            require_once ZEND_MP_INCLUDES_DIR . '/html/HtmlTextbox.php';
            return HtmlTextbox::create($name,$value,$attr,$options);
         }
-        // ======================= DISPLAY PHAN TU TEXTBOX===========================
+        // ======================= DISPLAY PHAN TU FILE UPLOAD ===========================
 
         public function fileupload($name= '', $value ='', $attr = array(), $options = null)
         {
@@ -56,5 +50,13 @@
            require_once ZEND_MP_INCLUDES_DIR . '/html/HtmlCheckbox.php';
            return HtmlCheckbox::create($name,$value,$attr,$options);
         }
+
+        // ======================= DISPLAY OPTIONAL INPUT===========================
+
+      //   public function inputtypes_options($type='',$name= '', $value ='', $attr = array(), $options = null)
+      //   {
+      //      require_once ZEND_MP_INCLUDES_DIR . '/html/HtmlInputTypes.php';
+      //      return HtmlInputTypes::create($type,$name,$value,$attr,$options);
+      //   }
 
     }

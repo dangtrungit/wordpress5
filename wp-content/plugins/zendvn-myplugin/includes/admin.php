@@ -4,19 +4,22 @@ require_once ZEND_MP_PLUGIN_DIR . '/includes/support.php';
 class ZendvnMpAdmin
 {
     private $_menuSlug = 'zendvn-mp-my-setting';
+    private $_menuSlugtrung = 'zendvn-mp-trung-setting';
     private $_setting_options;
-    private $_setting_options_titles;
+    private $_trung_setting_options;
 
     public function __construct()
     {
         //echo '<br>' . __METHOD__;
 
         $this->_setting_options = get_option('zendvn_mp_name', array());
+        $this->_trung_setting_options = get_option('trunghi_name', array());
 
 
         add_action('admin_menu', array($this, 'settingMenu'));
 
         add_action('admin_init', array($this, 'register_setting_and_fields'));
+        add_action('admin_init', array($this, 'register_trung_setting_and_fields'));
 
 
         // hanh dong XOa option_name
@@ -27,13 +30,13 @@ class ZendvnMpAdmin
     {
         delete_option('zendvn_mp_title_pass');
     }
-
+    //Hàm sẽ đc hook vào admin
     public function register_setting_and_fields()
     {
 
         register_setting(
-            'zendvn_mp_options',
-            'zendvn_mp_name',
+            'zendvn_mp_options', // Tên đăng kí option và đc tạo ra = hàm settings_fields()
+            'zendvn_mp_name', //tên của option name là dữ liệu dạng mảng nằm ở option value
             array($this, 'validate_setting')
         );
 
@@ -45,7 +48,12 @@ class ZendvnMpAdmin
             array($this, 'main_section_view'),
             $this->_menuSlug
         );
-
+        // add_settings_section(
+        //     main_section,
+        //     "Main setting",
+        //     array($this, 'main_section_view'),
+        //     $this->_menuSlug
+        // );
         add_settings_field(
             'zendvn_mp_new_title',
             'Site title',
@@ -68,6 +76,15 @@ class ZendvnMpAdmin
         // echo '<pre>';
         // print_r($tmp);
         // echo '</pre>';
+    }
+    public function register_trung_setting_and_fields()
+    {
+        // đăng kí 
+        register_setting(
+            'trunghi_options', // Tên đăng kí option và đc tạo ra = hàm settings_fields()
+            'trunghi_name', //tên của option name là dữ liệu dạng mảng nằm ở option value
+            array($this, 'validate_setting')
+        );
     }
 
     public function create_form($args)
@@ -102,7 +119,7 @@ class ZendvnMpAdmin
             );
 
             $options['current_value'] = 'yes';
-            echo $htmlObject->checkbox("zend_mp_name[zendvn_mp_new_title]", 'yes', $attr,$options) . 'Tôi đồng ý!';
+            echo $htmlObject->checkbox("zend_mp_name[zendvn_mp_new_title]", 'yes', $attr, $options) . 'Tôi đồng ý!';
 
             // ============================ RADIO ============================
             // $attr = array(
@@ -290,7 +307,7 @@ class ZendvnMpAdmin
     {
         // $menuSlug = 'zendvn-mp-my-setting';
         $url = ZEND_MP_IMAGES_URL . '/icon-setting16x16.png';
-
+        // ============================ ADD MENU MY SETTING VÀO HỆ THỐNG WP (PHẦN ADMIN) ============================
         add_menu_page(
             'My Setting title',
             'My Setting',
@@ -298,8 +315,19 @@ class ZendvnMpAdmin
             $this->_menuSlug,
             array($this, 'settingPage'),
             $url,
+            0
+        );
+        // ============================ ADD MENU TRUNG SETTING VÀO HỆ THỐNG WP (PHẦN ADMIN) ============================
+        add_menu_page(
+            'Trung Setting Title',
+            'Trung Setting',
+            'manage_options',
+            $this->_menuSlugtrung,
+            array($this, 'trungsettingPage'),
+            $url,
             1
         );
+        // ============================ ADD MENU VÀO MENU CHA CU HỆ THỐNG WP (MENU CON PHẦN MENU) ============================
         // add_options_page(
         //     'My Setting title',
         //     'My Setting',
@@ -312,6 +340,10 @@ class ZendvnMpAdmin
     public function settingPage()
     {
         require_once ZEND_MP_VIEWS_DIR . '/menu-page/setting-page.php';
+    }
+    public function trungsettingPage()
+    {
+        require_once ZEND_MP_VIEWS_DIR . '/menu-page/trung-setting-page.php';
     }
 
     // ================================================================================================================

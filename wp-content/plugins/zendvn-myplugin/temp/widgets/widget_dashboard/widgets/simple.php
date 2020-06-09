@@ -41,7 +41,6 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         // if(wp_script_is('jquery')){
         //     echo "<br/> Ton tai! ". $handlesc;
         // }else{
-
         //     echo "<br/> K ton tai! " . $handlesc;
         // }
         
@@ -150,7 +149,7 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
 
         $htmlObj = new ZendvnHtml();
 
-        // ============================ Tạo phần tử title ============================
+        // ============================ Tao phtu title ============================
         $inputID =  $this->get_field_id('title');
         $inputName = $this->get_field_name('title');
         $inputValue = $instance['title'];
@@ -161,7 +160,7 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         $htmlObj->texbox($inputName, $inputValue, $arr);
         echo '<p><label for="' . $inputID . '">' . translate('Title:') . $htmlObj->texbox($inputName, $inputValue, $arr) . '</label></p>';
 
-        // ============================ Tạo phần tử movie ============================
+        // ============================ Tao pt movie ============================
         $inputID =  $this->get_field_id('movie');
         $inputName = $this->get_field_name('movie');
         $inputValue = $instance['movie'];;
@@ -172,7 +171,7 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         $htmlObj->texbox($inputName, $inputValue, $arr);
         echo '<p><label for="' . $inputID . '">' . translate('Movie:') . $htmlObj->texbox($inputName, $inputValue, $arr) . '</label></p>';
 
-        // ============================ Tạo phần tử Song ============================
+        // ============================ TAo pt Song ============================
         $inputID =  $this->get_field_id('song');
         $inputName = $this->get_field_name('song');
         $inputValue = $instance['song'];;
@@ -183,7 +182,7 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         $htmlObj->texbox($inputName, $inputValue, $arr);
         echo '<p><label for="' . $inputID . '">' . translate('Song:') . $htmlObj->texbox($inputName, $inputValue, $arr) . '</label></p>';
 
-        // ============================ Tạo phần tử add css ============================
+        // ============================ TAo pt add css ============================
         $inputID =  $this->get_field_id('css');
         $inputName = $this->get_field_name('css');
         $inputValue = $instance['css'];;
