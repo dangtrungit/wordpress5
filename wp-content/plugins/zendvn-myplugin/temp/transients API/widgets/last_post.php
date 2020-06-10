@@ -30,6 +30,9 @@ class Zendvn_Mp_Widget_Last_Post extends WP_Widget
         $items = (empty($instance['items'])) ? '5' : $instance['items'];
         $ordering = (empty($instance['ordering'])) ? 'desc' : $instance['ordering'];
 
+
+
+
         $args = array(
             'post-type' => 'post',
             'order' => $ordering,
@@ -93,6 +96,10 @@ class Zendvn_Mp_Widget_Last_Post extends WP_Widget
 
             $this->showData_Html($argsStandard, $title, $before_widget, $before_title, $after_title, $after_widget);
         }
+
+
+
+
 
         wp_reset_postdata();
     }
@@ -203,6 +210,7 @@ class Zendvn_Mp_Widget_Last_Post extends WP_Widget
             // $this->showData_Html($args, $title, $before_widget, $before_title, $after_title, $after_widget);
             $wpQuery = $caching;
         }
+
 
         $classname = $this->widget_options['classname'];
         $before_widget = str_replace($classname, $classname . ' ' . 'addfilecss', $before_widget);
