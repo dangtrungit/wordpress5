@@ -1,0 +1,9 @@
+ =========== việc làm thao tác dữ liệu shortcode thông qua setting menu =============
+
+    add setting 
+    add option
+    trao doi du lieu thong qua bang setting
+    đẩy data lên db  - options
+    get_option kiểm tra đk cho phép hiển thị hay k
+
+ ====================================================================================

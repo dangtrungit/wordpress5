@@ -22,13 +22,14 @@ define('ZEND_MP_VIEWS_DIR', ZEND_MP_PLUGIN_DIR . 'views');
 define('ZEND_MP_UPLOADS_DIR', ZEND_MP_PLUGIN_DIR . 'uploads');
 define('ZEND_MP_INCLUDES_DIR', ZEND_MP_PLUGIN_DIR . 'includes');
 define('ZEND_MP_WIDGET_DIR', ZEND_MP_PLUGIN_DIR . 'widgets');
+define('ZEND_MP_SHORTCODE_DIR', ZEND_MP_PLUGIN_DIR . 'shortcodes');
 // echo '<br/>'. ZEND_MP_VIEWS_DIR;
 // echo '<br/>'. ZEND_MP_PLUGIN_URL;
 
 
 if (!is_admin()) {
 	require_once ZEND_MP_PLUGIN_DIR . '/includes/public.php';
-	new ZendvnMP();
+	// new ZendvnMP();
 } else {
 	require_once ZEND_MP_PLUGIN_DIR . '/includes/admin.php';
 	require_once ZEND_MP_PLUGIN_DIR . '/includes/html.php';
@@ -42,7 +43,7 @@ if (!is_admin()) {
 		register_widget('Zendvn_Mp_Widget_Simple');
 	});
 }
-
+// ============================ ĐĂNG KÍ WIDGET ============================
 // Đăng kí widget
 require_once ZEND_MP_WIDGET_DIR . '/simple.php';
 // CAch 1 regis
@@ -58,8 +59,15 @@ add_action(
 		register_widget('Zendvn_Mp_Widget_Last_Post');
 	}
 );
+// date_default_timezone_set('UTC');
+
+// ============================ SHORTCODE ============================
+//show date time
+require_once ZEND_MP_SHORTCODE_DIR . '/main.php';
+new Zendvn_Mp_SC_Main();
 
 
+// ============================ ============================
 // CAch 2 regis
 // add_action('widgets_init','zendvn_mp_register_widge}t');
 // function zendvn_mp_register_widget()
