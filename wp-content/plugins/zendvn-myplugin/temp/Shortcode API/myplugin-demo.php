@@ -23,7 +23,6 @@ define('ZEND_MP_UPLOADS_DIR', ZEND_MP_PLUGIN_DIR . 'uploads');
 define('ZEND_MP_INCLUDES_DIR', ZEND_MP_PLUGIN_DIR . 'includes');
 define('ZEND_MP_WIDGET_DIR', ZEND_MP_PLUGIN_DIR . 'widgets');
 define('ZEND_MP_SHORTCODE_DIR', ZEND_MP_PLUGIN_DIR . 'shortcodes');
-define('ZEND_MP_METABOX_DIR', ZEND_MP_PLUGIN_DIR . 'metaboxes');
 // echo '<br/>'. ZEND_MP_VIEWS_DIR;
 // echo '<br/>'. ZEND_MP_PLUGIN_URL;
 
@@ -60,11 +59,8 @@ add_action(
 		register_widget('Zendvn_Mp_Widget_Last_Post');
 	}
 );
+// date_default_timezone_set('UTC');
 
-
-// ============================ META BOX ============================
-require_once ZEND_MP_METABOX_DIR . '/main.php';
-new Zendvn_Mp_MB_Main();
 // ============================ SHORTCODE ============================
 //show date time
 require_once ZEND_MP_SHORTCODE_DIR . '/main.php';
