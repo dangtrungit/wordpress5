@@ -1,0 +1,11 @@
+.zendvn-mb-wrap {
+    overflow-x: auto;
+    /* color: red; */
+}
+
+.zendvn-mb-wrap lable {
+    overflow-x: auto;
+    display: table-caption;
+    padding: 5px;
+    /* font-weight: bold */
+}

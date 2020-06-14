@@ -41,9 +41,7 @@ class Zendvn_Widget_Db_Simple
             echo translate('no posts found ', 'default');
         }
         wp_reset_postdata();
-        echo '<pre>';
-        print_r($wpQuery);
-        echo '</pre>';
+      
     }
 
     function password()

@@ -95,8 +95,12 @@ class Zendvn_Mp_Widget_Simple extends WP_Widget
         // echo '<pre>'; 
         // print_r($args);
         // echo '</pre>';
-
+        // echo '<pre>'; 
+        // print_r(extract($args));
+        // echo '</pre>';
+        // die();
         extract($args);
+        // echo $name;
         $title = apply_filters('widget_title', $instance['title']);
         // $title = apply_filters('widget_title', $value);
         $title = (empty($title)) ? $widget_name : $instance['title'];
